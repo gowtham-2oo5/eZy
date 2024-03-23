@@ -1,0 +1,80 @@
+{% include "user_base.html" %}
+<!--  -->
+{% block unav %}
+<!--  -->
+
+<!--  -->
+<div class="container">
+  {% for message in messages %}
+  <!--  -->
+
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <form action="{% url 'save_user' %}" method="post">
+      {% csrf_token %}
+      <!--  -->
+      {% for message in messages %}
+      <input type="text" name="username" value="{{message}}" hidden />
+      {% endfor %}
+      <button
+        type="submit"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </form>
+  </div>
+  <!--  -->
+  {% endfor %}
+</div>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'user_index' %}">eZy</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+      style="width: 100%"
+    >
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" style="width: max-content">
+          <a class="nav-link" href="{% url 'manage_forms' %}"
+            >Manage responses</a
+          >
+        </li>
+      </ul>
+      <div class="row">
+        <div class="col">
+          <a href="{% url 'manage_profile' %}" style="text-decoration: none">
+            <button class="btn btn-outline-primary">Manage profile</button>
+          </a>
+          <a href="{% url 'create_form' %}"
+            ><button class="btn btn-outline-success">Create form</button></a
+          >
+          <a href="{% url 'user_grievances' %}" style="text-decoration: none">
+            <button class="btn btn-outline-dark">Grievances</button>
+          </a>
+          <a href="{% url 'logout' %}"
+            ><button class="btn btn-outline-danger">Logout</button></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+<!--  -->
+{% if ezy_user %}
+<h2 class="display-6">Welcome back <strong>{{ezy_user.fname}}</strong></h2>
+{% endif %}

@@ -1,0 +1,95 @@
+{% include 'navbar.html' %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 m-auto">
+      <div class="contact-form">
+        <h1 class="display-6">Contact us</h1>
+        <form
+          action="mailto:gowtham.ala.2oo5@gmail.com"
+          method="post"
+          enctype="text/plain"
+        >
+          {% csrf_token %}
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingInputName"
+                  name="name"
+                  placeholder="Enter your name"
+                />
+                <label for="floatingInputName">Your name</label>
+                <!-- Corrected for attribute -->
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="floatingInputEmail"
+                  name="email"
+                  placeholder="Enter your email"
+                  value="gowtham.ala.2oo5@gmail.com"
+                  disabled
+                />
+                <label for="floatingInputEmail">Email address</label>
+                <!-- Corrected for attribute -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInputSubject"
+                placeholder="Enter subject"
+                name="subject"
+              />
+              <label for="floatingInputSubject">Enter subject</label>
+              <!-- Corrected for attribute -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-floating">
+              <textarea
+                class="form-control"
+                placeholder="Leave a message here"
+                id="floatingTextarea2"
+                name="message"
+                style="height: 100px"
+              ></textarea>
+              <label for="floatingTextarea2">Message</label>
+              <!-- Corrected for attribute -->
+            </div>
+          </div>
+          <br />
+          <div class="row" style="width: 100%">
+            <div class="col">
+              <button
+                style="width: 100%"
+                type="submit"
+                class="btn btn-outline-primary"
+              >
+                Send
+              </button>
+            </div>
+            <div class="col">
+              <button
+                style="width: 100%"
+                type="reset"
+                class="btn btn-outline-secondary"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

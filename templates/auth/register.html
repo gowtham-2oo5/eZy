@@ -1,0 +1,206 @@
+{% include '_base.html' %}
+<div
+  class="card mx-auto shadow-lg rounded-3"
+  style="max-width: 50%; margin-top: 3%"
+>
+  <div class="card-body">
+    <h5 class="text-center mb-5 display-6">Register</h5>
+    <form
+      method="POST"
+      onsubmit="(e)=>e.preventDefault()"
+      action="{% url 'register' %}"
+    >
+      {% csrf_token %}
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                name="fname"  
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Enter first name"
+              />
+              <label for="floatingInput">First name</label>
+            </div>
+            <div class="invalid-feedback">Please enter your first name.</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                name="lname"
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Enter Last name"
+              />
+              <label for="floatingInput">Last name</label>
+            </div>
+            <div class="invalid-feedback">Please enter your last name.</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                name="username"
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Enter username"
+              />
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="invalid-feedback">Please enter your username.</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Enter emaiil"
+              />
+              <label for="floatingInput">Email</label>
+            </div>
+            <div class="invalid-feedback">Please enter your email.</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                name="phone"
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Enter Contact"
+              />
+              <label for="floatingInput">Phone</label>
+            </div>
+            <div class="invalid-feedback">Please enter your first name.</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                name="age"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Enter age"
+              />
+              <label for="floatingInput">Age</label>
+            </div>
+            <div class="invalid-feedback">Please enter your first name.</div>
+          </div>
+        </div>
+        <div class="row" style="width: 100%">
+          <div class="col-xl">
+            <label class="form-label">Please select your gender: </label>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="genderOptions"
+                id="maleOption"
+                value="Male"
+              />
+              <label class="form-check-label" for="maleOption">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="genderOptions"
+                id="femaleOption"
+                value="Female"
+              />
+              <label class="form-check-label" for="femaleOption">Female</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                name="password"
+                type="password"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Enter password"
+                minlength="8"
+                maxlength="16"
+              />
+              <label for="floatingInput">Password</label>
+              <div class="invalid-feedback">
+                The password must be atleast 8 chars length and atmost 16 chars
+                length
+              </div>
+            </div>
+            <div class="invalid-feedback">Please enter your first name.</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                name="confirmPassword"
+                type="password"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Confirm your passsword"
+                minlength="8"
+                maxlength="16"
+              />
+              <label for="floatingInput">Confirm Password</label>
+              <div class="invalid-feedback">
+                The password must be atleast 8 chars length and atmost 16 chars
+                length
+              </div>
+            </div>
+            <div class="invalid-feedback">Please enter your first name.</div>
+          </div>
+        </div>
+
+        <div class="form-floating md-6">
+          <textarea
+            name="address"
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea2"
+            style="height: 100px"
+          ></textarea>
+          <label for="floatingTextarea2">Address</label>
+        </div>
+      </div>
+      <br />
+      <div class="d-grid">
+        <button
+          class="btn btn-primary btn-login fw-semibold text-uppercase rounded-pill border-0 py-2"
+          type="submit"
+        >
+          Register
+        </button>
+      </div>
+    </form>
+    <br />
+    <a
+      href="{% url 'login' %}"
+      class="link-offset-2 link-underline link-underline-opacity-50 p-2 mt-2"
+    >
+      Have an account? Login here
+    </a>
+    <br />
+    <a
+      href="{% url 'home' %}"
+      class="link-offset-2 link-underline link-underline-opacity-50 p-2 mt-2"
+    >
+      Go back to home
+    </a>
+  </div>
+</div>
