@@ -57,6 +57,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'eZy.wsgi.application'
 
 # Database Settings
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -67,7 +68,7 @@ DATABASES = {
         'PORT':'5432',
     }
 }
-
+"""
 # Password Validators
 AUTH_PASSWORD_VALIDATORS = [
     {
