@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ezy</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="shortcut icon"
+      href="{% static 'favicon.ico' %}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+
+  <body>
+    {% block navbar %}
+    <!--  -->
+    <nav style="color: white; position: sticky; top: 0; z-index: 100">
+      <div
+        class="navbar bg-base sticky top-0 z-100"
+        style="color: white; position: sticky; top: 0; z-index: 100"
+      >
+        <div class="navbar-start">
+          <a class="btn btn-ghost text-xl">eZy</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal m px-1">
+            <li><a href="#about">About</a></li>
+            <li>
+              <a href="#services">Services</a>
+            </li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end" style="color: white">
+          <a
+            class="btn btn-ghost btn-outline"
+            style="
+              padding: 10px 20px;
+              margin-right: 5px;
+              color: white;
+              :hover {
+                color: white;
+                opacity: 80;
+              }
+            "
+            href="{% url 'register' %}"
+            >Register</a
+          >
+          <a
+            class="btn btn-ghost"
+            style="padding: 10px 20px; margin-right: 5px"
+            href="{% url 'login' %}"
+            >Login</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    {% endblock %}
+    <!--  -->
+
+    <!-- Hero section -->
+    <div class="hero h-screen">
+      <div class="hero-overlay bg-opacity-50"></div>
+      <div class="hero-content text-center text-neutral-content">
+        <div class="max-w-md">
+          <h1
+            class="mb-5 text-5xl font-bold"
+            style="color: white; letter-spacing: 2px"
+          >
+            Hello there! 👋
+          </h1>
+          <h6 class="mb-5 text-3xl font-bold" style="color: white">
+            Welcome to eZy
+          </h6>
+          <p class="mb-5" style="color: white">
+            A simple e survey platform built using Django, MySQL and styled with
+            DaisyUI and tailwindcss
+          </p>
+          <a href="{% url 'register' %}">
+            <button
+              class="btn btn-primary"
+              style="color: white; font-size: 20px"
+            >
+              Get Started
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!--  -->
+
+    <!-- About section -->
+
+    <!-- About section -->
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-overlay bg-opacity-70"></div>
+      <div class="hero-content text-center">
+        <div class="max-w-full">
+          <h1
+            class="mb-5 text-5xl font-bold"
+            style="color: white; letter-spacing: 2px"
+            id="about"
+          >
+            About Us
+          </h1>
+          <br />
+          <div class="grid">
+            <div class="card w-full bg-base-100 shadow-xl">
+              <div class="flex justify-center gap-2">
+                <div class="container p-4 w-fit">
+                  <div class="card-body">
+                    <h2 class="card-title">Our mission!</h2>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Nam ea placeat quidem dolore odit! Similique tempore
+                      tenetur temporibus adipisci quidem nam hic repellat maxime
+                      doloribus eius. Consequatur, ipsa natus. Blanditiis!
+                    </p>
+                  </div>
+                </div>
+                <div class="container p-4 w-fit">
+                  <div class="card-body">
+                    <h2 class="card-title">User benefits</h2>
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Est quae voluptatem atque, eveniet velit illum
+                      exercitationem repellat assumenda, magnam, maiores iste
+                      consequuntur ducimus. Iure iste cum quae quas nesciunt
+                      ullam?
+                    </p>
+                  </div>
+                </div>
+                <div class="container p-4 w-fit">
+                  <div class="card-body">
+                    <h2 class="card-title">Transparency and Security</h2>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Error repellendus laborum, quo veniam saepe quae quam, aut
+                      enim accusantium ex, repellat voluptatum ad quas.
+                      Assumenda tenetur blanditiis impedit voluptatum esse!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  -->
+
+    <!-- Services section -->
+
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-overlay bg-opacity-40"></div>
+      <div class="hero-content text-center">
+        <div class="max-w-full">
+          <h1
+            class="mb-5 text-5xl font-bold"
+            style="color: white; letter-spacing: 2px"
+            id="about"
+          >
+            Our Services
+          </h1>
+          <br />
+          <div class="grid">
+            <div class="card w-full bg-base-100 shadow-xl">
+              <div class="flex justify-center gap-2">
+                <div class="container p-4 w-fit">
+                  <div class="card-body">
+                    <h2 class="card-title">Survey creation</h2>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Nam ea placeat quidem dolore odit! Similique tempore
+                      tenetur temporibus adipisci quidem nam hic repellat maxime
+                      doloribus eius. Consequatur, ipsa natus. Blanditiis!
+                    </p>
+                  </div>
+                </div>
+                <div class="container p-4 w-fit">
+                  <div class="card-body">
+                    <h2 class="card-title">Survey Distribution</h2>
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Est quae voluptatem atque, eveniet velit illum
+                      exercitationem repellat assumenda, magnam, maiores iste
+                      consequuntur ducimus. Iure iste cum quae quas nesciunt
+                      ullam?
+                    </p>
+                  </div>
+                </div>
+                <div class="container p-4 w-fit">
+                  <div class="card-body">
+                    <h2 class="card-title">Data analysis</h2>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Error repellendus laborum, quo veniam saepe quae quam, aut
+                      enim accusantium ex, repellat voluptatum ad quas.
+                      Assumenda tenetur blanditiis impedit voluptatum esse!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  -->
+
+    <!-- Contact section -->
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-overlay bg-opacity-50"></div>
+      <div class="hero-content text-center">
+        <section class="bg-slate-400 bg-opacity-40 p-5 rounded-md">
+          <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+            <h2
+              class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
+            >
+              Contact Us
+            </h2>
+            <p
+              class="mb-8 lg:mb-16 font-medium text-center text-white dark:text-white sm:text-xl"
+            >
+              Got a technical issue? Want to send feedback about a beta feature?
+              Need details about our Business plan? Let us know.
+            </p>
+            <form action="{% url 'contactForm' %}" class="space-y-8">
+              <label class="input input-bordered flex items-center gap-2">
+                Name
+                <input type="text" class="grow" placeholder="John Doe" />
+              </label>
+              <label class="input input-bordered flex items-center gap-2">
+                Email
+                <input
+                  type="text"
+                  class="grow"
+                  placeholder="johndoe321@site.com"
+                />
+              </label>
+              <label class="input input-bordered flex items-center gap-2">
+                Subject
+                <input
+                  type="text"
+                  class="grow"
+                  placeholder="Describe your issue in a single line"
+                />
+              </label>
+              <label class="input input-bordered flex items-center gap-2">
+                Message
+                <input
+                  type="text"
+                  class="grow"
+                  placeholder="Describe your issue"
+                />
+              </label>
+              <button class="btn btn-success w-2/6 text-white font-semibolds">
+                Send
+              </button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+    <!--  -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script> -->
+  </body>
+</html>

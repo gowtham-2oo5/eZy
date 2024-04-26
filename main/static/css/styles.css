@@ -1,0 +1,15 @@
+html,
+body {
+  scroll-behavior: smooth;
+}
+.hero {
+  background: url("../images/heroBG.jpg") 30% 0 no-repeat fixed;
+  color: white;
+  height: 550px;
+}
+
+.registerBG {
+  background: url("../images/heroBG.jpg") 30% 0 no-repeat fixed;
+  color: white;
+  height: 550px;
+}
