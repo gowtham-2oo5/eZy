@@ -111,9 +111,9 @@ def viewResponses(request,surveyID):
 def shareSurvey(request,surveyID):
     return HttpResponse("Page under construction")
 def reviewSurvey(request,surveyID):
-    survey = EzySurveys.objects.get(surveyID=1)
-    questions = EzySurveyQuestions.objects.filter(surveyID=survey)
-    return HttpResponse(f"Page under construction {questions[1].q_options} ")
+    survey = EzySurveys.objects.get(surveyID=surveyID)
+    questions = EzySurveyQuestions.objects.filter(surveyID=survey,q_type='text'or'number'or'textarea')
+    return render(request,'reviewSurvey.html',{'survey':survey,'questions':questions})
 
 from .models import EzyResponses
 def fillSurvey(request,surveyID):
