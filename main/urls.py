@@ -8,5 +8,10 @@ urlpatterns = [
     path('contactForm/',views.contactForm,name='contactForm'),
     path('userHome/',views.userHome,name='userHome'),
     path('logoutUser/',views.logoutUser,name='logoutUser'),
-    path('forgotPass/',views.forgotPass,name='forgotPass')
+    path('forgotPass/',views.forgotPass,name='forgotPass'),
+    path('createSurvey/',views.createSurvey,name='createSurvey'),
+    path('addQuestions/<int:surveyID>',views.addQuestions,name='addQuestions'),
+    path('closeSurvey/<int:surveyID>',views.closeSurvey,name='closeSurvey'),
+    path('viewResponses/<int:surveyID>',views.viewResponses,name="viewResponses"),
+    path('shareSurvey/<int:surveyID>',views.shareSurvey,name='shareSurvey'),
 ]

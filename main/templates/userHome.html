@@ -1,135 +1,157 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>eZy home</title>
-    <!-- Required meta tags -->
+    <title>Ezy</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <!-- Bootstrap CSS v5.2.1 -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css"
       rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
+      type="text/css"
     />
+    <link
+      rel="shortcut icon"
+      href="{% static 'favicon.ico' %}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/userStyles.css' %}" />
   </head>
 
   <body>
-    {% if user.is_authenticated %}
-    <div align="center">
+    {% block navbar %}
+    <!--  -->
+    <nav style="color: white; position: sticky; top: 0; z-index: 100">
       <div
-        class="alert alert-success w-50 alert-dismissible fade show"
-        role="alert"
+        class="navbar bg-slate-900 sticky top-0 z-100"
+        style="color: white; position: sticky; top: 0; z-index: 100"
       >
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-        ></button>
-        <strong>You are now logged in as {{user.username}}</strong>
-      </div>
-    </div>
-
-    <script>
-      var alertList = document.querySelectorAll(".alert");
-      alertList.forEach(function (alert) {
-        new bootstrap.Alert(alert);
-      });
-    </script>
-
-    <!-- User navbar -->
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button
-          class="navbar-toggler d-lg-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapsibleNavId"
-          aria-controls="collapsibleNavId"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"
-                >Home <span class="visually-hidden">(current)</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="dropdownId"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >Dropdown</a
-              >
-              <div class="dropdown-menu" aria-labelledby="dropdownId">
-                <a class="dropdown-item" href="#">Action 1</a>
-                <a class="dropdown-item" href="#">Action 2</a>
-              </div>
-            </li>
-          </ul>
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <form class="d-flex my-2 my-lg-0">
-                  <input
-                    class="form-control me-sm-2"
-                    type="text"
-                    placeholder="Search"
-                  />
-                  <button
-                    class="btn btn-outline-success my-2 my-sm-0"
-                    type="submit"
-                  >
-                    Search
-                  </button>
-                </form>
-              </div>
-              <div class="col" style="align-self: end">
-                <form action="{% url 'logoutUser'%}" method="post">
-                  <button type="submit" class="btn btn-primary">Logout</button>
-                </form>
-              </div>
-            </div>
-          </div>
+        <div class="navbar-start">
+          <a class="btn btn-ghost text-xl">eZy</a>
+        </div>
+        <h3 class="navbar-center hidden lg:flex text-2xl">
+          Hello {{ user.username }}
+        </h3>
+        <div class="navbar-end" style="color: white">
+          <a
+            class="btn btn-ghost btn-outline"
+            style="
+              padding: 10px 20px;
+              margin-right: 15px;
+              color: white;
+              :hover {
+                color: white;
+                opacity: 80;
+              }
+            "
+            href="{% url 'register' %}"
+            >Manage Profle</a
+          >
+          <form
+            action="{% url 'logoutUser' %}"
+            method="post"
+            style="color: white"
+          >
+            {% csrf_token %}
+            <button class="btn btn-neutral" type="submit" style="color: white">
+              Logout
+            </button>
+          </form>
         </div>
       </div>
     </nav>
 
+    {% endblock %}
+    <!--  -->
+    <main style="color: white">
+      <div style="margin-left: auto; margin-top: 10px; width: 12%">
+        <a href="{% url 'createSurvey' %}">
+          <button class="btn-success btn w-max text-white font-normal text-lg">
+            Create survey <strong>+</strong>
+          </button>
+        </a>
+      </div>
+      <br /><br />
+      <h2 align="center" class="text-4xl font-medium">Your surveys:</h2>
+      <br /><br />
+      <!--  -->
+      {% if surveys %}
+      <!--  -->
+      <div class="flex items-center justify-center w-full">
+        <div class="w-5/6">
+          <div class="overflow-x-auto">
+            <table class="table table-zebra table-auto bg-slate-700">
+              <!-- head -->
+              <thead>
+                <tr class="text-white font-normal">
+                  <th>Survey id</th>
+                  <th>Survey Title</th>
+                  <th>Survey Description</th>
+                  <th>Survey status</th>
+                  <th>Add Questions</th>
+                  <th>Close Survey</th>
+                  <th>View Responses</th>
+                  <th>Share survey</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row 1 -->
+                {% for survey in surveys %}
+                <tr>
+                  <th>{{survey.surveyID}}</th>
+                  <td>{{survey.title}}</td>
+                  <td>{{survey.description}}</td>
+                  <td>
+                    {% if survey.status %}
+                    <span class="badge badge-success">Active</span>
+                    {% else %}
+                    <span class="badge badge-error">Inactive</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="{% url 'addQuestions' survey.surveyID %}">
+                      <button class="btn btn-primary">Add Questions</button>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'closeSurvey' survey.surveyID %}">
+                      <button class="btn btn-error">Close Survey</button>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'viewResponses' survey.surveyID %}">
+                      <button class="btn btn-primary">View Responses</button>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'shareSurvey' survey.surveyID %}">
+                      <button class="btn btn-primary">Share Survey</button>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      {% endif %}
+    </main>
+
+    <!-- Hero section -->
+
     <!--  -->
 
-    {% else %}
-    <h1>
-      You are not allowed to access this page yet, please
-      <a href="{% url 'login' %}" class="badge bg-primary">Login here!</a>
-    </h1>
-    {% endif %}
-    <!-- Bootstrap JavaScript Libraries -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
+    <!-- About section -->
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
+    <!--  -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script> -->
   </body>
 </html>

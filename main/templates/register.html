@@ -10,36 +10,58 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
+    <!-- Bootstrap CSS v5.2.1 -->
     <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      type="text/css"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.js"
-      integrity="sha512-bUju8VkXhCQgW7zCHSdiIDpECo/lqzChkKrKoc1v2PL2XqO/0Q2Y8dhu07+q6Rk+1c1xr6cfE0VZnumgwy93Ig=="
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/registerStyles.css' %}" />
   </head>
 
-  <body class="bg-gray-100">
-    <form method="post">
-      <h4 align="center">Fill this form to create an account</h4>
+  <body
+    style="
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      background-color: #37474f;
+      color: #eceff1;
+      opacity: 60;
+      overlay: 2;
+    "
+  >
+    <form method="post" class="w-50 mx-auto">
       {% csrf_token %}
-      <!--  -->
+      <h2 align="center">Fill this form to create an account</h2>
       {{ form.as_p }}
-      <button type="submit" class="btn btn-primary w-100 mt-2">Submit</button>
-      <p align="center">
-        Already have an account? <a href="{% url 'home' %}">Login</a>
-      </p>
-
-      <p align="center">Go back to <a href="{% url 'home' %}">Home</a></p>
+      <div align="center">
+        <button type="submit" class="w-50 btn btn-primary">Register</button>
+      </div>
+      <div align="start" style="margin-top: 20px">
+        Go back
+        <a href="{% url 'home' %}" class="link link-light link-item">Home</a>
+        <br />
+        Already have an account ?<a
+          href="{% url 'login' %}"
+          class="link link-light link-item"
+          >Login here</a
+        >
+      </div>
     </form>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
 
-    <br />
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

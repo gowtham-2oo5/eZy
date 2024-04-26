@@ -17,7 +17,6 @@ def registrationPage(request):
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
 
-
 def contactForm(request):
     if request.method == 'POST':
         uMail = request.POST.get('email')
@@ -58,10 +57,50 @@ def logoutUser(request):
 def forgotPass(request):
     return render(request,'forgotPass.html')    
     
+from .models import EzySurveys
+
 def userHome(request):
-    return render(request,'userHome.html')
+    user = request.user
+    try:
+        user = UserModel.objects.get(username=user.username)
+    except:
+        user = None
+        return HttpResponse("You are not logged in, Please login first <a href=\"{% url 'loginPage'%}\">Login</a> first.")
+    if user is not None:
+        owner = UserModel.objects.filter(username=user.username).first().id
+        surveys = EzySurveys.objects.filter(createdBy_id=owner)
+        if surveys is not None:
+            return render(request,'userHome.html',{'surveys':surveys})
+        return render(request,'userHome.html')
+    else:
+        return HttpResponse("You are not logged in, Please login first <a href=\"{% url 'loginPage'%}\">Login</a> first.")
+
 def createSurvey(request):
-    return render(request,'createSurvey.html')
+    if request.method == 'POST':
+        surveyTitle = request.POST.get('surveyTitle')
+        surveyDesc = request.POST.get('surveyDesc')
+        user = request.user.username
+        owner = UserModel.objects.get(username=user)
+        if owner is not None:
+            survey = EzySurveys(title=surveyTitle,description=surveyDesc,createdBy=owner,status=True)
+            survey.save()
+            print(surveyTitle,surveyDesc,owner)
+        else:
+            print('User not found')
+        return redirect('userHome')
+    else:
+        return render(request,'createSurvey.html')
+
+def addQuestions(request,surveyID):
+    return render(request,'addQuestions.html')
+
+def closeSurvey(request,surveyID):
+    return HttpResponse('Closed')
+def viewResponses(request,surveyID):
+    return HttpResponse("Page under construction")
+def shareSurvey(request,surveyID):
+    return HttpResponse("Page under construction")
+
 def fillSurvey(request):
     return render(request,'fillSurvey.html')
 def nonUserHome(request):

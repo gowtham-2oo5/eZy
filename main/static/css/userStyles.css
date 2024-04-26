@@ -1,0 +1,5 @@
+.hero {
+  background: url("../images/heroBG.jpg") 30% 0 no-repeat fixed;
+  color: white;
+  height: 550px;
+}

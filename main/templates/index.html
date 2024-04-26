@@ -227,8 +227,8 @@
     <div class="hero min-h-screen bg-base-200">
       <div class="hero-overlay bg-opacity-50"></div>
       <div class="hero-content text-center">
-        <section class="bg-slate-400 bg-opacity-40 p-5 rounded-md">
-          <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <section class="bg-opacity-40 p-5 rounded-md">
+          <div class="contactCard py-8 lg:py-16 px-4 mx-auto max-w-screen">
             <h2
               class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
             >
@@ -240,7 +240,10 @@
               Got a technical issue? Want to send feedback about a beta feature?
               Need details about our Business plan? Let us know.
             </p>
-            <form action="{% url 'contactForm' %}" class="space-y-8">
+            <form
+              action="{% url 'contactForm' %}"
+              class="contactForm space-y-8"
+            >
               <label class="input input-bordered flex items-center gap-2">
                 Name
                 <input type="text" class="grow" placeholder="John Doe" />

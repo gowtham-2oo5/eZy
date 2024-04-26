@@ -1,10 +1,3 @@
-html,
-body {
-  transition: ease-in-out;
-}
-label {
-  margin-bottom: 0.5rem;
-}
 input {
   display: block;
   width: 100%;
@@ -17,36 +10,36 @@ input {
   -moz-appearance: none;
   appearance: none;
   background-color: #78909c;
-  border: #78909c;
   background-clip: padding-box;
+  border: #78909c;
   border-radius: var(--bs-border-radius);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-form {
-  background-color: #546e7a;
-  padding: 30px 40px;
-  border-radius: 20px;
-}
-.hero {
-  background: url("../images/heroBG.jpg") 30% 0 no-repeat fixed;
+
+section {
+  background: url("../images/loginBG.jpg") 30% 0 no-repeat fixed;
   color: white;
   height: 550px;
 }
-.contactCard {
+.loginCard {
   /* From https://css.glass */
-  background: rgba(148, 163, 184, 0.57);
+  /* From https://css.glass */
+  background: rgba(55, 71, 79, 0.58);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.1px);
-  -webkit-backdrop-filter: blur(6.1px);
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  border: 1px solid rgba(55, 71, 79, 0.3);
 }
-.contactForm {
+
+.secondCard {
   /* From https://css.glass */
-  background: rgba(148, 163, 184, 0.65);
+  /* From https://css.glass */
+  background: rgba(84, 110, 122, 0.59);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.6px);
-  -webkit-backdrop-filter: blur(9.6px);
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid rgba(84, 110, 122, 0.3);
+  padding: 10px 20px;
 }
