@@ -19,7 +19,11 @@
       href="{% static 'favicon.ico' %}"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="{% static 'css/userStyles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/userStyles.css' %}"
+      type="text/css"
+    />
   </head>
 
   <body>
@@ -31,7 +35,7 @@
         style="color: white; position: sticky; top: 0; z-index: 100"
       >
         <div class="navbar-start">
-          <a class="btn btn-ghost text-xl">eZy</a>
+          <a class="btn btn-ghost text-xl" href="{% url 'userHome' %}">eZy</a>
         </div>
         <h3 class="navbar-center hidden lg:flex text-2xl">
           Hello {{ user.username }}
@@ -96,10 +100,10 @@
                   <th>Close Survey</th>
                   <th>View Responses</th>
                   <th>Share survey</th>
+                  <th>Review Form</th>
                 </tr>
               </thead>
               <tbody>
-                <!-- row 1 -->
                 {% for survey in surveys %}
                 <tr>
                   <th>{{survey.surveyID}}</th>
@@ -124,15 +128,21 @@
                   </td>
                   <td>
                     <a href="{% url 'viewResponses' survey.surveyID %}">
-                      <button class="btn btn-primary">View Responses</button>
+                      <button class="btn btn-accent">View Responses</button>
                     </a>
                   </td>
                   <td>
                     <a href="{% url 'shareSurvey' survey.surveyID %}">
-                      <button class="btn btn-primary">Share Survey</button>
+                      <button class="btn btn-success">Share Survey</button>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'reviewSurvey' survey.surveyID %}">
+                      <button class="btn btn-primary">Review Survey</button>
                     </a>
                   </td>
                 </tr>
+
                 {% endfor %}
               </tbody>
             </table>

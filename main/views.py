@@ -73,7 +73,7 @@ def userHome(request):
             return render(request,'userHome.html',{'surveys':surveys})
         return render(request,'userHome.html')
     else:
-        return HttpResponse("You are not logged in, Please login first <a href=\"{% url 'loginPage'%}\">Login</a> first.")
+        return HttpResponse("You are not logged in, Please login first ")
 
 def createSurvey(request):
     if request.method == 'POST':
@@ -91,8 +91,18 @@ def createSurvey(request):
     else:
         return render(request,'createSurvey.html')
 
+from .models import EzySurveyQuestions
 def addQuestions(request,surveyID):
-    return render(request,'addQuestions.html')
+    survey = EzySurveys.objects.get(surveyID=1)
+    if request.method == 'POST':
+        qText = request.POST.get('qText')
+        qType = request.GET.get('qType') or request.POST.get('qType')
+        question = EzySurveyQuestions(surveyID=survey,question=qText,q_type=qType)
+        question.save()
+        messages.info(request, 'Question added successfully')
+        return redirect('addQuestions',surveyID=survey.surveyID)
+    else:
+        return render(request,'addQuestions.html',{"survey":survey})
 
 def closeSurvey(request,surveyID):
     return HttpResponse('Closed')
@@ -100,9 +110,22 @@ def viewResponses(request,surveyID):
     return HttpResponse("Page under construction")
 def shareSurvey(request,surveyID):
     return HttpResponse("Page under construction")
+def reviewSurvey(request,surveyID):
+    survey = EzySurveys.objects.get(surveyID=1)
+    questions = EzySurveyQuestions.objects.filter(surveyID=survey)
+    return HttpResponse(f"Page under construction {questions[1].q_options} ")
 
-def fillSurvey(request):
-    return render(request,'fillSurvey.html')
+from .models import EzyResponses
+def fillSurvey(request,surveyID):
+    survey = EzySurveys.objects.get(surveyID=surveyID)
+    question = EzySurveyQuestions.objects.get(questionID=1,surveyID=survey)
+    response = EzyResponses(questionID=question,response_text="Gowtham")
+    response.save()
+    if response is not None:
+        return HttpResponse(f"Response is {response.response_text}")
+    else:
+        return HttpResponse("Error in adding response")
+    # return render(request,'fillSurvey.html')
 def nonUserHome(request):
     return render(request,'nonUserView.html')
 def surveyResults(request):

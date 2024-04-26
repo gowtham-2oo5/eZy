@@ -24,7 +24,7 @@ class EzySurveyQuestions(models.Model):
     surveyID = models.ForeignKey(EzySurveys, on_delete=models.CASCADE)
     question = models.CharField(max_length=100)
     q_type = models.CharField(max_length=20)
-    q_options = models.JSONField(default=list)  # For PostgreSQL, equivalent to VARCHAR(20)[]
+    # q_options = models.JSONField(default=list)  # For PostgreSQL, equivalent to VARCHAR(20)[]
     class Meta:
         db_table = 'ezy_survey_questions'
 
