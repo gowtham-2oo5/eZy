@@ -111,12 +111,14 @@
             name="qText"
             class="grow"
             placeholder="Enter question"
+            required
           />
         </label>
         <select
           name="qType"
           class="select select-bordered w-full max-w-xs"
           onchange="displayOptions(event.target.value)"
+          required
         >
           <option disabled selected>Select the question Type</option>
           <option value="text">text</option>
@@ -126,19 +128,6 @@
         </select>
 
         <br /><br />
-
-        <div class="options" style="display: none">
-          <label class="input mb-10 input-bordered flex items-center gap-2">
-            Desired Options:
-            <input
-              type="text"
-              name="options"
-              class="grow"
-              placeholder="Enter options seperated by commas"
-            />
-          </label>
-        </div>
-
         <div class="form-control">
           <button class="btn btn-primary" type="submit">Add Question</button>
         </div>
