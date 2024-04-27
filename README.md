@@ -1,6 +1,6 @@
 # eZy - The Survey Platform
 
-**Currently live**: [Here](gowtham2oo5.pythonanywhere.com)
+**Currently live**: [Here](https://gowtham2oo5.pythonanywhere.com/)
 
 **Status:** Developed
 
