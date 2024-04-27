@@ -122,9 +122,15 @@
                     </a>
                   </td>
                   <td>
+                    {% if survey.status %}
                     <a href="{% url 'closeSurvey' survey.surveyID %}">
                       <button class="btn btn-error">Close Survey</button>
                     </a>
+                    {% else %}
+                    <a href="{% url 'openSurvey' survey.surveyID %}">
+                      <button class="btn btn-success">Open Survey</button>
+                    </a>
+                    {% endif %}
                   </td>
                   <td>
                     <a href="{% url 'viewResponses' survey.surveyID %}">
@@ -132,9 +138,12 @@
                     </a>
                   </td>
                   <td>
-                    <a href="{% url 'shareSurvey' survey.surveyID %}">
-                      <button class="btn btn-success">Share Survey</button>
-                    </a>
+                    <button
+                      class="btn btn-success"
+                      onclick="copyText('{{survey.surveyID}}')"
+                    >
+                      Share Survey
+                    </button>
                   </td>
                   <td>
                     <a href="{% url 'reviewSurvey' survey.surveyID %}">
@@ -160,7 +169,31 @@
     <!-- About section -->
 
     <!--  -->
-
+    <script>
+      function copyText(id) {
+        text = `http://127.0.0.1:8000/fillSurvey/${id}`;
+        // Check for Clipboard API support
+        if (!navigator.clipboard) {
+          // Fallback for older browsers using a hidden text area
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand("copy");
+          textArea.remove();
+          return;
+        }
+        // Use Clipboard API for modern browsers
+        navigator.clipboard.writeText(text).then(
+          function () {
+            console.log("Copying to clipboard was successful!");
+          },
+          function (err) {
+            console.error("Failed to copy to clipboard:", err);
+          }
+        );
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script> -->
   </body>

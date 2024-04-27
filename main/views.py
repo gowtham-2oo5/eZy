@@ -105,11 +105,28 @@ def addQuestions(request,surveyID):
         return render(request,'addQuestions.html',{"survey":survey})
 
 def closeSurvey(request,surveyID):
-    return HttpResponse('Closed')
-def viewResponses(request,surveyID):
-    return HttpResponse("Page under construction")
-def shareSurvey(request,surveyID):
-    return HttpResponse("Page under construction")
+    survey = EzySurveys.objects.get(surveyID=surveyID)
+    survey.status = False
+    survey.save()
+    messages.info(request, 'Survey closed successfully')
+    return redirect('userHome')
+def openSurvey(request,surveyID):
+    survey = EzySurveys.objects.get(surveyID=surveyID)
+    survey.status = True
+    survey.save()
+    messages.info(request, 'Survey opened successfully')
+    return redirect('userHome')
+
+from django.shortcuts import  get_object_or_404
+def viewResponses(request, surveyID):
+    survey = get_object_or_404(EzySurveys, surveyID=surveyID)
+    responses = EzyResponses.objects.filter(questionID__surveyID=surveyID)
+    ds = {}
+    for response in responses:
+        ds[response.questionID.questionID] = {'question': response.questionID.question, 'response_text': response.response_text}
+    print(ds)
+    return render(request, 'viewResponses.html', {'responses': ds, 'survey': survey})
+
 def reviewSurvey(request,surveyID):
     survey = EzySurveys.objects.get(surveyID=surveyID)
     questions = EzySurveyQuestions.objects.filter(surveyID=survey,q_type='text'or'number'or'textarea')
@@ -118,14 +135,17 @@ def reviewSurvey(request,surveyID):
 from .models import EzyResponses
 def fillSurvey(request,surveyID):
     survey = EzySurveys.objects.get(surveyID=surveyID)
-    question = EzySurveyQuestions.objects.get(questionID=1,surveyID=survey)
-    response = EzyResponses(questionID=question,response_text="Gowtham")
-    response.save()
-    if response is not None:
-        return HttpResponse(f"Response is {response.response_text}")
+    questions = EzySurveyQuestions.objects.filter(surveyID=survey,q_type='text'or'number'or'textarea')
+    if request.method == 'POST':
+        for question in questions:
+            response = request.POST.get(question.question)
+            response = EzyResponses(questionID=question,response_text=response)
+            response.save()
+        messages.info(request,"Thanks for filling the survey form")
+        return redirect('home')
     else:
-        return HttpResponse("Error in adding response")
-    # return render(request,'fillSurvey.html')
+        return render(request,'fillSurvey.html',{'survey':survey,'questions':questions})
+
 def nonUserHome(request):
     return render(request,'nonUserView.html')
 def surveyResults(request):

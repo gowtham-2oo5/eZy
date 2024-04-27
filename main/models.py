@@ -32,6 +32,5 @@ class EzyResponses(models.Model):
     responseID = models.AutoField(primary_key=True)
     questionID = models.ForeignKey(EzySurveyQuestions, on_delete=models.CASCADE)
     response_text = models.CharField(max_length=255)
-    response_option = models.CharField(max_length=255)
     class Meta:
         db_table = 'ezy_responses'

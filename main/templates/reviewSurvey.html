@@ -15,7 +15,7 @@
       type="text/css"
     />
     <script src="{% static 'js/addQuestions.js' %}"></script>
-    <title>Add Questions</title>
+    <title>Review Form</title>
   </head>
   <body>
     {% if messages %} {% for message in messages %}
@@ -97,19 +97,33 @@
 
     {% endblock %}
 
-    <main class="text-white flex h-screen items-center justify-center w-full">
-      <form action="{% url 'fillSurvey' survey.surveyID %}" method="post">
+    <main class="text-white grid min-h-screen place-items-center">
+      <form
+        action="{% url 'fillSurvey' survey.surveyID %}"
+        method="post"
+        class="grid grid-cols-1 gap-4"
+      >
+        {% csrf_token %}
+        <h1 class="text-4xl font-medium col-span-1">
+          Survey title: {{ survey.title }}
+        </h1>
+        <h6 class="text-2xl font-medium col-span-1">
+          Survey description: {{ survey.description }}
+        </h6>
         {% if questions %} {% for qs in questions %}
-        <label class="input input-bordered flex items-center gap-2">
+        <label class="input input-bordered flex items-center gap-2 col-span-1">
           {% if qs.question and qs.q_type != "radio" %}
-          <span>{{qs.question}}: </span>
+          <span>{{ qs.question }}: </span>
           {% endif %}
-          <input type="{{qs.q_type}}" class="grow" placeholder="Enter answer" />
+          <input
+            type="{{ qs.q_type }}"
+            class="grow"
+            placeholder="Enter answer"
+          />
         </label>
-        <br />
         {% endfor %} {% endif %}
-        <div align="center">
-          <button type="submit" class="btn btn-primary w-3/6">Submit</button>
+        <div class="col-span-1 text-center">
+          <button type="submit" class="btn btn-primary w-full">Submit</button>
         </div>
       </form>
     </main>

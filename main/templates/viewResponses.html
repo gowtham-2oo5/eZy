@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Survey responses {{survey.surveyID}}</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="shortcut icon"
+      href="{% static 'favicon.ico' %}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/userStyles.css' %}"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    {% block navbar %}
+    <!--  -->
+    <nav style="color: white; position: sticky; top: 0; z-index: 100">
+      <div
+        class="navbar bg-slate-900 sticky top-0 z-100"
+        style="color: white; position: sticky; top: 0; z-index: 100"
+      >
+        <div class="navbar-start">
+          <a class="btn btn-ghost text-xl" href="{% url 'userHome' %}">eZy</a>
+        </div>
+        <h3 class="navbar-center hidden lg:flex text-2xl">
+          Hello {{ user.username }}
+        </h3>
+        <div class="navbar-end" style="color: white">
+          <a
+            class="btn btn-ghost btn-outline"
+            style="
+              padding: 10px 20px;
+              margin-right: 15px;
+              color: white;
+              :hover {
+                color: white;
+                opacity: 80;
+              }
+            "
+            href="{% url 'register' %}"
+            >Manage Profle</a
+          >
+          <form
+            action="{% url 'logoutUser' %}"
+            method="post"
+            style="color: white"
+          >
+            {% csrf_token %}
+            <button class="btn btn-neutral" type="submit" style="color: white">
+              Logout
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    {% endblock %}
+    <!--  -->
+    <main style="color: white">
+      <div style="margin-left: auto; margin-top: 10px; width: 12%">
+        <a href="{% url 'createSurvey' %}">
+          <button class="btn-success btn w-max text-white font-normal text-lg">
+            Create survey <strong>+</strong>
+          </button>
+        </a>
+      </div>
+      <br /><br />
+      <h2 align="center" class="text-4xl font-medium">Responses:</h2>
+      <br /><br />
+      <!--  -->
+      {% if responses %}
+      <div class="flex items-center justify-center w-full">
+        <div class="w-5/6">
+          <div class="overflow-x-auto">
+            <h1>Responses of survey: {{ survey.title }}</h1>
+            <table class="table table-zebra table-auto bg-slate-700">
+              <!-- head -->
+              <thead>
+                <tr class="text-white font-normal">
+                  <th>Question</th>
+                  <th>Answers</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for question_id, response in responses.items %}
+                <tr>
+                  <td>{{ response.question }}</td>
+                  <td>{{ response.response_text }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </main>
+
+    <!-- Hero section -->
+
+    <!--  -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script> -->
+  </body>
+</html>
