@@ -92,8 +92,9 @@ def createSurvey(request):
         return render(request,'createSurvey.html')
 
 from .models import EzySurveyQuestions
+
 def addQuestions(request,surveyID):
-    survey = EzySurveys.objects.get(surveyID=1)
+    survey = EzySurveys.objects.get(surveyID=surveyID)
     if request.method == 'POST':
         qText = request.POST.get('qText')
         qType = request.GET.get('qType') or request.POST.get('qType')
@@ -123,7 +124,10 @@ def viewResponses(request, surveyID):
     responses = EzyResponses.objects.filter(questionID__surveyID=surveyID)
     ds = {}
     for response in responses:
-        ds[response.questionID.questionID] = {'question': response.questionID.question, 'response_text': response.response_text}
+        qId = response.questionID.questionID
+        if qId not in ds:
+            ds[qId] = {'question': response.questionID.question, 'responses': []}
+        ds[qId]['responses'].append(response.response_text)
     print(ds)
     return render(request, 'viewResponses.html', {'responses': ds, 'survey': survey})
 
@@ -135,16 +139,19 @@ def reviewSurvey(request,surveyID):
 from .models import EzyResponses
 def fillSurvey(request,surveyID):
     survey = EzySurveys.objects.get(surveyID=surveyID)
-    questions = EzySurveyQuestions.objects.filter(surveyID=survey,q_type='text'or'number'or'textarea')
-    if request.method == 'POST':
-        for question in questions:
-            response = request.POST.get(question.question)
-            response = EzyResponses(questionID=question,response_text=response)
-            response.save()
-        messages.info(request,"Thanks for filling the survey form")
-        return redirect('home')
+    if survey.status == False:
+        return HttpResponse("Survey is closed")
     else:
-        return render(request,'fillSurvey.html',{'survey':survey,'questions':questions})
+        questions = EzySurveyQuestions.objects.filter(surveyID=survey,q_type='text'or'number'or'textarea')
+        if request.method == 'POST':
+            for question in questions:
+                response = request.POST.get(question.question)
+                response = EzyResponses(questionID=question,response_text=response)
+                response.save()
+            messages.info(request,"Thanks for filling the survey form")
+            return redirect('home')
+        else:
+            return render(request,'fillSurvey.html',{'survey':survey,'questions':questions})
 
 def nonUserHome(request):
     return render(request,'nonUserView.html')

@@ -1,6 +1,7 @@
 html,
 body {
   transition: ease-in-out;
+  scroll-behavior: smooth;
 }
 label {
   margin-bottom: 0.5rem;

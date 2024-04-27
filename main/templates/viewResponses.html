@@ -101,7 +101,19 @@
                 {% for question_id, response in responses.items %}
                 <tr>
                   <td>{{ response.question }}</td>
-                  <td>{{ response.response_text }}</td>
+                  <td>
+                    <div>
+                      {% for ans in response.responses %}
+                      <!--  -->
+                      {{ ans }}
+                      <!--  -->
+                      {% if not forloop.last %},
+                      <!--  -->
+                      {% endif %}
+                      <!--  -->
+                      {% endfor %}
+                    </div>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -109,6 +121,7 @@
           </div>
         </div>
       </div>
+
       {% endif %}
     </main>
 
