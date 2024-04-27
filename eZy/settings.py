@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-34w++!k3r%5=t1&bdiap_c252ra42erek6jlrb+m&m%7d0ti7p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gowtham2oo5.pythonanywhere.com']
 
 
 # Application definition
@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'eZy.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'ezy',
-		'USER': 'gowtham',
-		'PASSWORD': 'gowtham',
-		'HOST':'localhost',
+		'NAME': 'gowtham2oo5$eZy',
+		'USER': 'gowtham2oo5',
+		'PASSWORD': '!@#MDgB4#@!',
+		'HOST':'gowtham2oo5.mysql.pythonanywhere-services.com',
 		'PORT':'3306',
 	}
 }
