@@ -171,8 +171,10 @@
     <!--  -->
     <script>
       function copyText(id) {
-        text = `http://127.0.0.1:8000/fillSurvey/${id}`;
-        // Check for Clipboard API support
+        const currentDomain = window.location.host;
+        const text = `http://127.0.0.1:8000/fillSurvey/${id}`;
+        // Replace the domain in the URL
+        text = text.replace("127.0.0.1:8000", currentDomain); // Check for Clipboard API support
         if (!navigator.clipboard) {
           // Fallback for older browsers using a hidden text area
           const textArea = document.createElement("textarea");
