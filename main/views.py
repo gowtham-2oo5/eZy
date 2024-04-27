@@ -142,7 +142,7 @@ def fillSurvey(request,surveyID):
     if survey.status == False:
         return HttpResponse("Survey is closed")
     else:
-        questions = EzySurveyQuestions.objects.filter(surveyID=survey,q_type='text'or'number'or'textarea')
+        questions = EzySurveyQuestions.objects.filter(surveyID=survey).all()
         if request.method == 'POST':
             for question in questions:
                 response = request.POST.get(question.question)
