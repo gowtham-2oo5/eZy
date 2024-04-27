@@ -133,7 +133,7 @@ def viewResponses(request, surveyID):
 
 def reviewSurvey(request,surveyID):
     survey = EzySurveys.objects.get(surveyID=surveyID)
-    questions = EzySurveyQuestions.objects.filter(surveyID=survey,q_type='text'or'number'or'textarea')
+    questions = EzySurveyQuestions.objects.filter(surveyID=survey).all()
     return render(request,'reviewSurvey.html',{'survey':survey,'questions':questions})
 
 from .models import EzyResponses
