@@ -77,16 +77,13 @@ WSGI_APPLICATION = 'eZy.wsgi.application'
 
 DATABASES = {
 	'default': {
-		'ENGINE': 'django.db.backends.mysql',
-		#'NAME': 'eZy',
-		##'USER': 'gowtham',
-		#'PASSWORD': 'gowtham',
-		#'HOST':'localhost',
-		 'NAME': 'gowtham2oo5$eZy',
-		 'USER': 'gowtham2oo5',
-		 'PASSWORD': '!@#MDgB4#@!',
-		 'HOST':'gowtham2oo5.mysql.pythonanywhere-services.com',
-		'PORT':'3306',
+		# Give your database details here
+		'ENGINE': '',
+		 'NAME': '',
+		 'USER': '',
+		 'PASSWORD': ,
+		 'HOST':'',
+		'PORT':'',
 	}
 }
 
