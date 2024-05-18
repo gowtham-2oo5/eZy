@@ -1,6 +1,6 @@
 # eZy - The Survey Platform
 
-**Contact me for Demo**  <a href="mailto:gowtham.ala12345@gmail.com">
+**Contact me for Demo**  <a href="mailto:gowtham.ala.2oo5@gmail.com">
     <img src="https://img.shields.io/badge/Gmail-333333?style=for-the-badge&logo=gmail&logoColor=red" />
   </a>
   <a href="https://linkedin.com/in/gowtham-2oo5" target="_blank">
